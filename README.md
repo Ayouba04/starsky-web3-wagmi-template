@@ -1,100 +1,139 @@
-# Web3 Wagmi Template
+# 🚀 Web3 DApp Template
 
-A modern Web3 application template with smart contract deployment capabilities, built with React, Vite, Wagmi, and Hardhat.
+A modern, production-ready Web3 template built with React, Vite, Wagmi, RainbowKit, and shadcn/ui. Perfect for AI-scaffolded Web3 applications with seamless smart contract deployment.
 
-## Features
+## ✨ Features
 
-- ⚡ **Vite + React** - Fast development with hot reload
-- 🔗 **Wagmi + RainbowKit** - Easy wallet connection and Web3 interactions
-- 📝 **Smart Contracts** - Solidity contracts with Hardhat
-- 🚀 **One-Click Deploy** - Integrated deployment to Sepolia and Base Sepolia
-- 🎨 **Tailwind CSS** - Modern styling
-- 📱 **Responsive Design** - Works on all devices
+- **🔗 Web3 Integration**: Wagmi + RainbowKit for wallet connections
+- **🎨 Modern UI**: shadcn/ui components with Tailwind CSS
+- **⚡ Fast Development**: Vite for lightning-fast builds
+- **📱 Responsive Design**: Mobile-first responsive layout
+- **🔐 Multi-Network**: Sepolia, Base Sepolia, Mainnet support
+- **📄 Smart Contracts**: Auto-detects contracts in `contracts/` directory
+- **🚀 One-Click Deploy**: Integrates with drinklemonade.ai deployment system
 
-## Quick Start
+## 🏗️ Template Structure
 
-### 1. Environment Setup
-
-Copy `.env.example` to `.env` and fill in your values:
-
-```bash
-# Sepolia Testnet
-PRIVATE_KEY_SEPOLIA=0x...
-ALCHEMY_API_KEY_SEPOLIA=your_alchemy_key
-
-# Base Sepolia Testnet  
-PRIVATE_KEY_BASESEPOLIA=0x...
-ALCHEMY_API_KEY_BASESEPOLIA=your_alchemy_key
+```
+├── contracts/                 # Smart contracts (.sol files)
+│   └── SimpleStorage.sol      # Example contract
+├── src/
+│   ├── components/
+│   │   ├── ui/               # shadcn/ui components
+│   │   ├── Web3Provider.tsx  # Web3 context provider
+│   │   ├── ConnectWallet.tsx # Wallet connection component
+│   │   └── ContractInteraction.tsx # Contract interaction UI
+│   ├── lib/
+│   │   └── wagmi.ts         # Wagmi configuration
+│   └── App.tsx              # Main application
+└── package.json             # Dependencies
 ```
 
-### 2. Install Dependencies
+## 🚀 Quick Start
 
+### 1. Install Dependencies
 ```bash
 npm install
+# or
+pnpm install
 ```
 
-### 3. Compile Contracts
-
-```bash
-npm run compile
-```
-
-### 4. Deploy Smart Contract
-
-```bash
-# Deploy to Sepolia
-npm run hardhat:deploy
-
-# Deploy to Base Sepolia
-npm run hardhat:deploy:base
-```
-
-### 5. Start Development Server
-
+### 2. Start Development Server
 ```bash
 npm run dev
+# or
+pnpm dev
 ```
 
-## Smart Contract
+### 3. Deploy Smart Contract
+- Use the Web3 Deploy Panel in drinklemonade.ai
+- Contracts in `contracts/` directory are auto-detected
+- One-click deployment to Sepolia/Base Sepolia
 
-The template includes a simple `Greeter` contract located in `contracts/Greeter.sol`:
-
-- **Constructor**: Sets initial greeting message
-- **greet()**: Returns current greeting
-- **setGreeting()**: Updates greeting message
-- **Events**: Emits `GreetingChanged` when greeting is updated
-
-## Deployment Networks
-
-- **Sepolia Testnet**: Ethereum testnet
-- **Base Sepolia**: Base L2 testnet
-
-## Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run compile` - Compile smart contracts
-- `npm run hardhat:deploy` - Deploy to Sepolia
-- `npm run hardhat:deploy:base` - Deploy to Base Sepolia
-- `npm run hardhat:verify` - Verify contract on Etherscan
-
-## Project Structure
-
-```
-├── contracts/          # Solidity smart contracts
-├── scripts/            # Deployment scripts
-├── src/                # React frontend source
-├── hardhat.config.ts   # Hardhat configuration
-├── vite.config.ts      # Vite configuration
-└── package.json        # Dependencies and scripts
+### 4. Update Contract Address
+After deployment, update the contract address in `src/lib/wagmi.ts`:
+```typescript
+export const CONTRACT_ADDRESSES = {
+  sepolia: '0xYourDeployedContractAddress',
+  baseSepolia: '0xYourDeployedContractAddress',
+  // ...
+};
 ```
 
-## Getting Test ETH
+## 🔧 Configuration
 
-- **Sepolia**: [Sepolia Faucet](https://sepoliafaucet.com/)
-- **Base Sepolia**: [Base Sepolia Faucet](https://www.coinbase.com/faucets/base-ethereum-sepolia-faucet)
+### Wallet Connect Project ID
+Get your Project ID from [WalletConnect Cloud](https://cloud.walletconnect.com) and update in `src/lib/wagmi.ts`:
 
-## Block Explorers
+```typescript
+export const config = getDefaultConfig({
+  appName: 'Your DApp Name',
+  projectId: 'YOUR_WALLET_CONNECT_PROJECT_ID',
+  // ...
+});
+```
 
-- **Sepolia**: [https://sepolia.etherscan.io](https://sepolia.etherscan.io)
-- **Base Sepolia**: [https://sepolia.basescan.org](https://sepolia.basescan.org)
+## 📄 Smart Contracts
+
+### Adding New Contracts
+1. Add your `.sol` files to the `contracts/` directory
+2. Update the ABI in `src/lib/wagmi.ts`
+3. Deploy using drinklemonade.ai Web3 Deploy Panel
+4. Update contract addresses after deployment
+
+### Example Contract Structure
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+contract YourContract {
+    // Your contract code here
+}
+```
+
+## 🌐 Supported Networks
+
+- **Sepolia Testnet** (Chain ID: 11155111)
+- **Base Sepolia** (Chain ID: 84532)  
+- **Ethereum Mainnet** (Chain ID: 1)
+
+## 🎨 UI Components
+
+Built with shadcn/ui components:
+- Cards, Buttons, Inputs
+- Dialogs, Tooltips, Separators
+- Form components with validation
+- Responsive grid layouts
+
+## 🔗 Web3 Features
+
+- **Wallet Connection**: MetaMask, WalletConnect, Coinbase Wallet
+- **Network Switching**: Automatic network detection and switching
+- **Contract Interaction**: Read/write contract functions
+- **Transaction Handling**: Loading states and confirmations
+- **Error Handling**: User-friendly error messages
+
+## 🚀 Deployment Integration
+
+This template is designed to work seamlessly with the drinklemonade.ai deployment system:
+
+1. **AI Scaffolding**: AI generates complete Web3 apps using this template
+2. **Contract Detection**: Auto-detects `.sol` files in `contracts/` directory
+3. **One-Click Deploy**: Deploy contracts directly from the chat interface
+4. **Real-time Logs**: Watch deployment progress in real-time
+5. **Multi-Network**: Deploy to Sepolia, Base Sepolia, or other networks
+
+## 📚 Learn More
+
+- [Wagmi Documentation](https://wagmi.sh)
+- [RainbowKit Documentation](https://rainbowkit.com)
+- [shadcn/ui Documentation](https://ui.shadcn.com)
+- [Vite Documentation](https://vitejs.dev)
+
+## 🤝 Contributing
+
+This template is part of the drinklemonade.ai ecosystem. Contributions welcome!
+
+---
+
+**Built with ❤️ for the Web3 community**
