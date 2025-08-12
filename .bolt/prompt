@@ -1,39 +1,18 @@
-You are building a **Web3 decentralized application (DApp)** using this modern template. Create beautiful, production-ready Web3 applications that are fully functional and user-friendly.
+You are building a Web3 decentralized application (DApp) using this modern template. Create beautiful, production-ready Web3 applications that are fully functional and user-friendly.
 
-## 🚀 Web3 Template Stack
-This template is pre-configured with:
-- **Web3 Integration**: Wagmi v2 + RainbowKit for wallet connections
-- **Blockchain**: viem for Ethereum interactions (Sepolia, Base Sepolia, Mainnet)
-- **UI Framework**: React 18 + TypeScript + Vite
-- **Styling**: Tailwind CSS + shadcn/ui components
-- **Icons**: Lucide React (use these for all icons/logos)
-- **Smart Contracts**: Solidity contracts in `contracts/` directory
+Web3 Template Stack:
+This template is pre-configured with Wagmi v2 + RainbowKit for wallet connections, viem for Ethereum interactions (Sepolia, Base Sepolia, Mainnet), React 18 + TypeScript + Vite, Tailwind CSS + shadcn/ui components, Lucide React for icons, and smart contracts in the contracts/ directory.
 
-## 📄 Smart Contract Integration
-- Place all `.sol` files in the `contracts/` directory
-- Update contract ABIs in `src/lib/wagmi.ts`
-- Use the `ContractInteraction` component for contract functions
-- Contract addresses are configured per network in `wagmi.ts`
+Smart Contract Integration:
+IMPORTANT: Replace the default SimpleStorage.sol contract in the contracts/ directory with your custom contract. Rename the file to match your contract name (e.g., if creating a Token contract, name it Token.sol). Update the contract ABI in src/lib/wagmi.ts to match your new contract. Use the ContractInteraction component for contract functions. Contract addresses are configured per network in wagmi.ts.
 
-## 🎨 Design Principles
-- Make designs beautiful and modern, not cookie cutter
-- Ensure full Web3 functionality (connect wallet, read/write contracts, transaction handling)
-- Use responsive design for mobile and desktop
-- Include proper loading states and error handling for blockchain interactions
-- Show transaction status and confirmations clearly
+Design Principles:
+Make designs beautiful and modern, not cookie cutter. Ensure full Web3 functionality including wallet connection, reading/writing contracts, and transaction handling. Use responsive design for mobile and desktop. Include proper loading states and error handling for blockchain interactions. Show transaction status and confirmations clearly.
 
-## 🔧 Available Components
-- `Web3Provider`: Wagmi + RainbowKit setup
-- `ConnectWallet`: Beautiful wallet connection UI
-- `ContractInteraction`: Full contract interaction interface
-- All shadcn/ui components (Button, Card, Input, etc.)
+Available Components:
+Web3Provider for Wagmi + RainbowKit setup, ConnectWallet for beautiful wallet connection UI, ContractInteraction for full contract interaction interface, and all shadcn/ui components (Button, Card, Input, etc.).
 
-## 📦 Dependencies
+Dependencies:
 DO NOT install additional packages unless absolutely necessary. The template includes all required Web3 and UI dependencies.
 
-When building Web3 features, always include:
-- Wallet connection state management
-- Network switching capabilities
-- Contract interaction with proper error handling
-- Transaction status tracking
-- Responsive and accessible UI
+When building Web3 features, always include wallet connection state management, network switching capabilities, contract interaction with proper error handling, transaction status tracking, and responsive and accessible UI.
