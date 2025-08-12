@@ -1,6 +1,10 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 
+// Ensure proper TypeScript/ESM support
+import { config as dotenvConfig } from "dotenv";
+dotenvConfig();
+
 // Use Alchemy RPC URLs with API keys
 const SEPOLIA_RPC = process.env.ALCHEMY_API_KEY_SEPOLIA 
   ? `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY_SEPOLIA}`

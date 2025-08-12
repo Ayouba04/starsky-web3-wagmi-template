@@ -8,9 +8,12 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "hardhat:compile": "hardhat compile",
-    "hardhat:deploy": "hardhat run scripts/deploy.ts --network sepolia",
-    "hardhat:verify": "hardhat verify --network sepolia"
+    "compile": "hardhat compile",
+    "deploy": "NODE_OPTIONS='--loader ts-node/esm' hardhat run scripts/deploy.ts",
+    "deploy:sepolia": "NODE_OPTIONS='--loader ts-node/esm' hardhat run scripts/deploy.ts --network sepolia",
+    "deploy:base": "NODE_OPTIONS='--loader ts-node/esm' hardhat run scripts/deploy.ts --network baseSepolia",
+    "verify": "hardhat verify --network sepolia",
+    "test-setup": "node test-deploy.js"
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.0.0",
@@ -39,7 +42,9 @@
     "hardhat": "^2.22.15",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
-    "ethers": "^6.13.2"
+    "ethers": "^6.13.2",
+    "dotenv": "^16.0.0",
+    "ts-node": "^10.9.0"
   },
   "overrides": {
     "glob": "^10.3.10",
