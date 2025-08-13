@@ -4,7 +4,7 @@ Web3 Template Stack:
 This template is pre-configured with Wagmi v2 + RainbowKit for wallet connections, viem for Ethereum interactions (Sepolia, Base Sepolia, Mainnet), React 18 + TypeScript + Vite, Tailwind CSS + shadcn/ui components, Lucide React for icons, and smart contracts in the contracts/ directory.
 
 Smart Contract Integration:
-Place your smart contracts in the contracts/ directory. Update the contract ABI in src/lib/wagmi.ts to match your contract. Use the ContractInteraction component for contract functions. Contract addresses are configured per network in wagmi.ts.
+Create your smart contracts as .sol files in the contracts/ directory. The deploy panel will automatically detect any .sol files you create there. Update the contract ABI in src/lib/wagmi.ts to match your contract. Use the ContractInteraction component for contract functions. Contract addresses are configured per network in wagmi.ts.
 
 Design Principles:
 Make designs beautiful and modern, not cookie cutter. Ensure full Web3 functionality including wallet connection, reading/writing contracts, and transaction handling. Use responsive design for mobile and desktop. Include proper loading states and error handling for blockchain interactions. Show transaction status and confirmations clearly.
