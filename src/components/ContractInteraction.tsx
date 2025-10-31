@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { formatEther, parseEther } from 'viem';
 import { Button } from './ui/button';
@@ -10,13 +10,20 @@ import { Loader2, Plus, Minus, RotateCcw } from 'lucide-react';
 import { SIMPLE_STORAGE_ABI, CONTRACT_ADDRESSES } from '../lib/wagmi';
 import { useAccount, useChainId } from 'wagmi';
 
+// Query options for better caching
+const QUERY_OPTIONS = {
+  refetchInterval: false as const,
+  staleTime: 30 * 1000,  // 30 seconds
+  gcTime: 5 * 60 * 1000,  // 5 minutes
+};
+
 export function ContractInteraction() {
   const [newValue, setNewValue] = useState('');
   const { address } = useAccount();
   const chainId = useChainId();
   
-  // Get contract address for current chain
-  const getContractAddress = () => {
+  // Memoize contract address to prevent unnecessary recalculations
+  const contractAddress = useMemo(() => {
     switch (chainId) {
       case 11155111: // Sepolia
         return CONTRACT_ADDRESSES.sepolia;
@@ -27,22 +34,22 @@ export function ContractInteraction() {
       default:
         return CONTRACT_ADDRESSES.sepolia;
     }
-  };
+  }, [chainId]);
 
-  const contractAddress = getContractAddress();
-
-  // Read current value
+  // Read current value with optimized caching
   const { data: currentValue, refetch } = useReadContract({
     address: contractAddress as `0x${string}`,
     abi: SIMPLE_STORAGE_ABI,
     functionName: 'getValue',
+    query: QUERY_OPTIONS,
   });
 
-  // Read owner
+  // Read owner with optimized caching
   const { data: owner } = useReadContract({
     address: contractAddress as `0x${string}`,
     abi: SIMPLE_STORAGE_ABI,
     functionName: 'owner',
+    query: QUERY_OPTIONS,
   });
 
   // Write contract hooks

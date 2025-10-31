@@ -1,9 +1,14 @@
-import React from 'react';
+import { lazy, Suspense } from 'react';
 import { Web3Provider } from './components/Web3Provider';
 import { ConnectWallet } from './components/ConnectWallet';
-import { ContractInteraction } from './components/ContractInteraction';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './components/ui/card';
 import { Separator } from './components/ui/separator';
+import { Loader2 } from 'lucide-react';
+
+// Lazy load heavy contract interaction component for better initial load
+const ContractInteraction = lazy(() => 
+  import('./components/ContractInteraction').then(m => ({ default: m.ContractInteraction }))
+);
 
 function App() {
   return (
@@ -25,9 +30,22 @@ function App() {
 
           {/* Main Content */}
           <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
-            {/* Contract Interaction */}
+            {/* Contract Interaction with Suspense for lazy loading */}
             <div className="lg:col-span-2">
-              <ContractInteraction />
+              <Suspense
+                fallback={
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Loading Contract...</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex justify-center py-8">
+                      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                    </CardContent>
+                  </Card>
+                }
+              >
+                <ContractInteraction />
+              </Suspense>
             </div>
 
             {/* Info Cards */}
